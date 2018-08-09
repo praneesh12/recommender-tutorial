@@ -32,14 +32,14 @@ The two most commonly used methods for recommendation systems are: 1) collaborat
 
 - utility matrix
 
-<img src="images/collaborative-filtering.png">
+<img src="images/collaborative-filtering.png" width="250px">
 
 
 ### Content-based Filtering
 
 - user and item features
 
-<img src="images/content-based-filtering.png">
+<img src="images/content-based-filtering.png" width="400px">
 
 
 ### How do we define a user's "preference" towards an item?

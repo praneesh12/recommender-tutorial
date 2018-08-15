@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Part 1: Building a Recommendation System from Scratch" href="tutorial.html" />
     <link rel="prev" title="An Introduction to Recommendation Systems in Python" href="index.html" /> 
 
   
@@ -88,10 +87,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-do-we-define-a-user-s-preference-towards-an-item">How do we define a user’s “preference” towards an item?</a></li>
 </ul>
 </li>
-</ul>
-<p class="caption"><span class="caption-text">Tutorials:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Part 1: Building a Recommendation System from Scratch</a></li>
 </ul>
 
             
@@ -190,16 +185,15 @@
 </div>
 <div class="section" id="collaborative-filtering">
 <h2>Collaborative Filtering<a class="headerlink" href="#collaborative-filtering" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>utility matrix</li>
-</ul>
+<p>Collaborative filering (CF) is based on the concept of homophily - similar users will like similar items.
+It uses item preferences from other users to identify which item a particular user will like best. Collaborative filtering can be divided into two algorithms: memory-based or model-based.</p>
+<p><strong>Memory-based</strong> algorithms look at item-item, user-item, or user-user similarity using different similarity metrics such as Pearson correlation coefficient, Jaccard similarity, etc. This approach is easy and very interpretable. However, its performance decreases as the dataset becomes more sparse.</p>
+<p><strong>Model-based</strong> algorithms use matrix factorization techniques such as SVD and NMF to extract “hidden”, meaningful factors from the dataset.</p>
 <a class="reference internal image-reference" href="_images/utility-matrix.png"><img alt="_images/utility-matrix.png" src="_images/utility-matrix.png" style="width: 280px;" /></a>
 </div>
 <div class="section" id="content-based-filtering">
 <h2>Content-based Filtering<a class="headerlink" href="#content-based-filtering" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>user and item features</li>
-</ul>
+<p>Content-based filtering looks at user and item features to generate personalized recommendations. Content-based filtering handles the cold start problem because it can generate personalized recommendations for brand new users and features.</p>
 <a class="reference internal image-reference" href="_images/cb-filtering.png"><img alt="_images/cb-filtering.png" src="_images/cb-filtering.png" style="width: 550px;" /></a>
 </div>
 <div class="section" id="how-do-we-define-a-user-s-preference-towards-an-item">
@@ -219,8 +213,6 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="tutorial.html" class="btn btn-neutral float-right" title="Part 1: Building a Recommendation System from Scratch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="An Introduction to Recommendation Systems in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

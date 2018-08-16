@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Part 1: Building a Recommendation System for Explicit Feedback Datasets" href="part-1-tutorial.html" />
     <link rel="prev" title="An Introduction to Recommendation Systems in Python" href="index.html" /> 
 
   
@@ -87,6 +88,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#how-do-we-define-a-user-s-preference-towards-an-item">How do we define a user’s “preference” towards an item?</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="part-1-tutorial.html">Part 1: Building a Recommendation System for Explicit Feedback Datasets</a></li>
 </ul>
 
             
@@ -200,9 +205,10 @@ It uses item preferences from other users to identify which item a particular us
 <h2>How do we define a user’s “preference” towards an item?<a class="headerlink" href="#how-do-we-define-a-user-s-preference-towards-an-item" title="Permalink to this headline">¶</a></h2>
 <p>There are two types of feedback data:</p>
 <ol class="arabic simple">
-<li>Implicit feedback (e.g., number of times a user has watched a movie)</li>
-<li>Explicit feedback (e.g., movie ratings)</li>
+<li>Explicit feedback, which considers a user’s direct response to an item (e.g., rating, like/dislike)</li>
+<li>Implicit feedback, which looks at a user’s indirect behaviour towards an item (e.g., number of times a user has watched a movie)</li>
 </ol>
+<p>Before using this data in your recommendation system, it is important to perform some data pre-processing. For example, you should normalize ratings of different users to the same scale. More information on how to normalize data in recommendation systems is described [here](<a class="reference external" href="https://www.cs.purdue.edu/homes/lsi/sigir04-cf-norm.pdf">https://www.cs.purdue.edu/homes/lsi/sigir04-cf-norm.pdf</a>).</p>
 </div>
 </div>
 
@@ -213,6 +219,8 @@ It uses item preferences from other users to identify which item a particular us
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="part-1-tutorial.html" class="btn btn-neutral float-right" title="Part 1: Building a Recommendation System for Explicit Feedback Datasets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="An Introduction to Recommendation Systems in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

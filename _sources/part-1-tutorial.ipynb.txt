@@ -15,7 +15,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Dependencies"
+    "## Import Dependencies"
    ]
   },
   {
@@ -46,7 +46,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Let's download a small version of the MovieLens dataset. See [here](https://grouplens.org/datasets/movielens/) for zip file url. We're working with data in `ml-latest-small.zip` and will need to add the following files to our repository: \n",
+    "Let's download a small version of the MovieLens dataset. See [here](https://grouplens.org/datasets/movielens/) for zip file url, or directly download [here](http://files.grouplens.org/datasets/movielens/ml-latest-small.zip). We're working with data in `ml-latest-small.zip` and will need to add the following files to our repository: \n",
     "- ratings.csv\n",
     "- movies.csv\n",
     "\n",
@@ -55,7 +55,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 12,
    "metadata": {},
    "outputs": [
     {
@@ -134,7 +134,7 @@
        "4       1     1172     4.0  1260759205"
       ]
      },
-     "execution_count": 3,
+     "execution_count": 12,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -142,6 +142,98 @@
    "source": [
     "ratings = pd.read_csv(os.path.join(\"data\", \"ratings.csv\"))\n",
     "ratings.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>movieId</th>\n",
+       "      <th>title</th>\n",
+       "      <th>genres</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Toy Story (1995)</td>\n",
+       "      <td>Adventure|Animation|Children|Comedy|Fantasy</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Jumanji (1995)</td>\n",
+       "      <td>Adventure|Children|Fantasy</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Grumpier Old Men (1995)</td>\n",
+       "      <td>Comedy|Romance</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>Waiting to Exhale (1995)</td>\n",
+       "      <td>Comedy|Drama|Romance</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>Father of the Bride Part II (1995)</td>\n",
+       "      <td>Comedy</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   movieId                               title  \\\n",
+       "0        1                    Toy Story (1995)   \n",
+       "1        2                      Jumanji (1995)   \n",
+       "2        3             Grumpier Old Men (1995)   \n",
+       "3        4            Waiting to Exhale (1995)   \n",
+       "4        5  Father of the Bride Part II (1995)   \n",
+       "\n",
+       "                                        genres  \n",
+       "0  Adventure|Animation|Children|Comedy|Fantasy  \n",
+       "1                   Adventure|Children|Fantasy  \n",
+       "2                               Comedy|Romance  \n",
+       "3                         Comedy|Drama|Romance  \n",
+       "4                                       Comedy  "
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "movies = pd.read_csv(os.path.join(\"data\", \"movies.csv\"))\n",
+    "movies.head()"
    ]
   },
   {
@@ -160,7 +252,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 14,
    "metadata": {},
    "outputs": [
     {
@@ -189,12 +281,12 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 15,
    "metadata": {},
    "outputs": [
     {
      "data": {
-      "image/png": "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\n",
+      "image/png": "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\n",
       "text/plain": [
        "<Figure size 432x288 with 1 Axes>"
       ]
@@ -205,12 +297,13 @@
    ],
    "source": [
     "ax = sns.countplot(x=\"rating\", data=ratings, palette=\"GnBu\")\n",
+    "plt.title(\"Distribution of movie ratings\")\n",
     "plt.show()"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 16,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -219,7 +312,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 17,
    "metadata": {},
    "outputs": [
     {
@@ -228,7 +321,7 @@
        "Text(0.5,1,'Number of movies rated per user')"
       ]
      },
-     "execution_count": 7,
+     "execution_count": 17,
      "metadata": {},
      "output_type": "execute_result"
     },
@@ -258,14 +351,143 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Transforming the data"
+    "Which movie had the lowest average rating?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>movieId</th>\n",
+       "      <th>title</th>\n",
+       "      <th>genres</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>1062</th>\n",
+       "      <td>1311</td>\n",
+       "      <td>Santa with Muscles (1996)</td>\n",
+       "      <td>Comedy</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      movieId                      title  genres\n",
+       "1062     1311  Santa with Muscles (1996)  Comedy"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "mean_rating = ratings.groupby('movieId')[['rating']].mean()\n",
+    "lowest_rated = mean_rating['rating'].idxmin()\n",
+    "movies.loc[movies['movieId'] == lowest_rated]"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We need to transform our dataframe into a sparse matrix such that rows represents users and columns represent items. This is called a **utility matrix** and forms the basis of collaborative filtering. Remember: collaborative filtering is a technique that identifies similar users and recommends what similar users like. It doesn't require any user or item features! \n",
+    "Which movie had the highest average rating?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>movieId</th>\n",
+       "      <th>title</th>\n",
+       "      <th>genres</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>50</th>\n",
+       "      <td>53</td>\n",
+       "      <td>Lamerica (1994)</td>\n",
+       "      <td>Adventure|Drama</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    movieId            title           genres\n",
+       "50       53  Lamerica (1994)  Adventure|Drama"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "highest_rated = mean_rating['rating'].idxmax()\n",
+    "movies.loc[movies['movieId'] == highest_rated]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Transforming the data"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We need to transform our dataframe into a sparse matrix such that rows represents users and columns represent items. This is called a **utility matrix** and forms the basis of collaborative filtering. Remember: collaborative filtering is a technique that identifies similar users and recommends what similar users like. It does not require any user or item features! \n",
     "\n",
     "<img src=\"images/user-movie-matrix.png\" width=\"500px\" align=\"left\">"
    ]
@@ -278,23 +500,14 @@
     "- **user_mapper:** maps user id to user index\n",
     "- **movie_mapper:** maps movie id to movie index\n",
     "- **user_inv_mapper:** maps user index to user id\n",
-    "- **movie_inv_mapper:** maps movie index to movie id"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 8,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "from sklearn.model_selection import train_test_split\n",
+    "- **movie_inv_mapper:** maps movie index to movie id\n",
     "\n",
-    "train_ratings, valid_ratings = train_test_split(ratings, test_size=0.2, random_state=42)"
+    "We need these dictionaries because they map which row/column of the utility matrix corresponds to which user/item ID."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 94,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -326,18 +539,287 @@
     "    user_index = [user_mapper[i] for i in df['userId']]\n",
     "    item_index = [movie_mapper[i] for i in df['movieId']]\n",
     "\n",
-    "    X = csr_matrix((df[\"rating\"], (user_index, item_index)), shape=(N, M))\n",
+    "    X = csr_matrix((df[\"rating\"], (item_index, user_index)), shape=(M, N))\n",
     "    \n",
     "    return X, user_mapper, movie_mapper, user_inv_mapper, movie_inv_mapper"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 94,
+   "execution_count": 95,
    "metadata": {},
    "outputs": [],
    "source": [
     "X, user_mapper, movie_mapper, user_inv_mapper, movie_inv_mapper = create_X(ratings)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Let's check out the sparsity of our X matrix.\n",
+    "\n",
+    "Here, we calculate sparsity by dividing the number of non-zero elements by total number of elements. \n",
+    "\n",
+    "$$S=\\frac{\\text{# non-zero elements}}{\\text{total # elements}}$$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 170,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Matrix sparsity: 1.64%\n"
+     ]
+    }
+   ],
+   "source": [
+    "sparsity = X.count_nonzero()/(X.shape[0]*X.shape[1])\n",
+    "\n",
+    "print(\"Matrix sparsity: {0:.2f}%\".format(sparsity*100))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Finding similar movies using k-Nearest Neighbours\n",
+    "\n",
+    "We will first cover **memory-based** collaborative filtering."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.neighbors import NearestNeighbors\n",
+    "\n",
+    "def find_similar_movies(movie_id, X, k, metric=None):\n",
+    "    \"\"\"\n",
+    "    Finds k-nearest neighbours for a given movie id.\n",
+    "    \n",
+    "    Args:\n",
+    "        movie_id: id of the movie of interest\n",
+    "        X: user-item utility matrix\n",
+    "        k: number of similar movies to retrieve\n",
+    "        metric: distance metric for kNN calculations, default is set to euclidean\n",
+    "    \n",
+    "    Output: returns list of k similar movie ID's\n",
+    "    \"\"\"\n",
+    "    if metric == None:\n",
+    "        metric = 'euclidean'\n",
+    "\n",
+    "    neighbour_ids = []\n",
+    "    \n",
+    "    movie_ind = movie_mapper[movie_id]\n",
+    "    movie_vec = X[movie_ind]\n",
+    "    k+=1\n",
+    "    kNN = NearestNeighbors(n_neighbors=k, algorithm=\"brute\", metric=metric)\n",
+    "    kNN.fit(X)\n",
+    "    if isinstance(movie_vec, (np.ndarray)):\n",
+    "        movie_vec = movie_vec.reshape(1,-1)\n",
+    "    neighbour = kNN.kneighbors(movie_vec, return_distance=False)\n",
+    "    for i in range(0,k):\n",
+    "        n = neighbour.item(i)\n",
+    "        neighbour_ids.append(movie_inv_mapper[n])\n",
+    "    neighbour_ids.pop(0)\n",
+    "    return neighbour_ids"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Because you watched  Toy Story (1995)\n",
+      "Toy Story 2 (1999)\n",
+      "Bug's Life, A (1998)\n",
+      "Groundhog Day (1993)\n",
+      "Independence Day (a.k.a. ID4) (1996)\n",
+      "Monsters, Inc. (2001)\n",
+      "Finding Nemo (2003)\n",
+      "Incredibles, The (2004)\n",
+      "Shrek (2001)\n",
+      "Willy Wonka & the Chocolate Factory (1971)\n",
+      "Mission: Impossible (1996)\n"
+     ]
+    }
+   ],
+   "source": [
+    "movie_titles = dict(zip(movies['movieId'], movies['title']))\n",
+    "\n",
+    "movie_id = 1\n",
+    "\n",
+    "similar_ids = find_similar_movies(movie_id, X, k=10)\n",
+    "\n",
+    "print(\"Because you watched \", movie_titles[movie_id])\n",
+    "for i in similar_ids:\n",
+    "    print(movie_titles[i])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Pretty cool!\n",
+    "\n",
+    "You can also play around with the kNN distance metric and see what results you would get if you use \"manhattan\" instead of \"euclidean\"."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 84,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Because you watched  Toy Story (1995)\n",
+      "Toy Story 2 (1999)\n",
+      "Star Wars: Episode IV - A New Hope (1977)\n",
+      "Forrest Gump (1994)\n",
+      "Independence Day (a.k.a. ID4) (1996)\n",
+      "Groundhog Day (1993)\n",
+      "Back to the Future (1985)\n",
+      "Jurassic Park (1993)\n",
+      "Shrek (2001)\n",
+      "Star Wars: Episode VI - Return of the Jedi (1983)\n",
+      "Pulp Fiction (1994)\n"
+     ]
+    }
+   ],
+   "source": [
+    "movie_titles = dict(zip(movies['movieId'], movies['title']))\n",
+    "\n",
+    "movie_id = 1\n",
+    "\n",
+    "similar_ids = find_similar_movies(movie_id, X, k=10, metric=\"cosine\")\n",
+    "\n",
+    "print(\"Because you watched \", movie_titles[movie_id])\n",
+    "for i in similar_ids:\n",
+    "    print(movie_titles[i])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Advanced: in the section below, we transform the sparse matrix X to lower dimensions using Single Vector Decomposition (SVD). "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Because you watched  Toy Story (1995)\n",
+      "Toy Story 2 (1999)\n",
+      "Bug's Life, A (1998)\n",
+      "Independence Day (a.k.a. ID4) (1996)\n",
+      "Groundhog Day (1993)\n",
+      "Monsters, Inc. (2001)\n",
+      "Incredibles, The (2004)\n",
+      "Finding Nemo (2003)\n",
+      "Shrek (2001)\n",
+      "Babe (1995)\n",
+      "Twister (1996)\n"
+     ]
+    }
+   ],
+   "source": [
+    "svd = TruncatedSVD(n_components=200, n_iter=10, random_state=42)\n",
+    "Z = svd.fit_transform(X)\n",
+    "similar_ids = find_similar_movies(movie_id, Z, k=10)\n",
+    "\n",
+    "print(\"Because you watched \", movie_titles[movie_id])\n",
+    "for i in similar_ids:\n",
+    "    print(movie_titles[i])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Matrix Factorization\n",
+    "\n",
+    "Can we accurately predict a user's movie preferences?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 121,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from sklearn.model_selection import train_test_split\n",
+    "from sklearn.decomposition import TruncatedSVD\n",
+    "\n",
+    "ratings_train, ratings_test = train_test_split(ratings, test_size=0.2, random_state=42)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 122,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "X_train, _, _, _, _ = create_X(ratings_train)\n",
+    "X_test, _, _, _, _ = create_X(ratings_test)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 145,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def root_mean_squared_error(X_pred, X_test):\n",
+    "    return np.nanmean((X_pred-X_test)**2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 146,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "avg = csr_matrix.mean(X_train)\n",
+    "X_pred = np.zeros(X_train.shape)+avg"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 147,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.19141917371090814"
+      ]
+     },
+     "execution_count": 147,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "score(X_pred, X_train.toarray())"
    ]
   }
  ],

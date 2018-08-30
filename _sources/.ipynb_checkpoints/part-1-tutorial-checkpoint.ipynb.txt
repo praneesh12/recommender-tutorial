@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Part 1: Building a Recommendation System for Explicit Feedback Datasets\n",
+    "# Part 1: Building a Recommendation System Using Collaborative Filtering\n",
     "\n",
     "We will be using a [MovieLens](https://movielens.org/) dataset to build a simple recommendation system in Python. MovieLens is a platform where users rate movies, and get personalized recommendations based on their preferences. It has several publicly available datasets that are widely used for recommendation system tutorials.\n",
     "\n",
@@ -15,12 +15,12 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Dependencies"
+    "## Import Dependencies"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -55,7 +55,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [
     {
@@ -134,7 +134,7 @@
        "4       1     1172     4.0  1260759205"
       ]
      },
-     "execution_count": 12,
+     "execution_count": 2,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -146,7 +146,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 3,
    "metadata": {},
    "outputs": [
     {
@@ -226,7 +226,7 @@
        "4                                       Comedy  "
       ]
      },
-     "execution_count": 13,
+     "execution_count": 3,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -252,7 +252,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 4,
    "metadata": {},
    "outputs": [
     {
@@ -281,7 +281,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 5,
    "metadata": {},
    "outputs": [
     {
@@ -303,7 +303,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 6,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -312,7 +312,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 7,
    "metadata": {},
    "outputs": [
     {
@@ -321,7 +321,7 @@
        "Text(0.5,1,'Number of movies rated per user')"
       ]
      },
-     "execution_count": 17,
+     "execution_count": 7,
      "metadata": {},
      "output_type": "execute_result"
     },
@@ -356,7 +356,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [
     {
@@ -401,7 +401,7 @@
        "1062     1311  Santa with Muscles (1996)  Comedy"
       ]
      },
-     "execution_count": 25,
+     "execution_count": 8,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -421,7 +421,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
+   "execution_count": 9,
    "metadata": {},
    "outputs": [
     {
@@ -466,7 +466,7 @@
        "50       53  Lamerica (1994)  Adventure|Drama"
       ]
      },
-     "execution_count": 26,
+     "execution_count": 9,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -507,7 +507,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 94,
+   "execution_count": 10,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -546,7 +546,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 95,
+   "execution_count": 11,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -557,20 +557,52 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Finding similar movies using k-Nearest Neighbours\n",
+    "Let's check out the sparsity of our X matrix.\n",
     "\n",
-    "We will first cover **memory-based** collaborative filtering."
+    "Here, we calculate sparsity by dividing the number of non-zero elements by total number of elements as described in the equation below: \n",
+    "\n",
+    "$$S=\\frac{\\text{# non-zero elements}}{\\text{total elements}}$$"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 96,
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'X' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-2-09113f1bf719>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0msparsity\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mX\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcount_nonzero\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m/\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mX\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mshape\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m0\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0mX\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mshape\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Matrix sparsity: {0:.2f}%\"\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mformat\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0msparsity\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;36m100\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mNameError\u001b[0m: name 'X' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "sparsity = X.count_nonzero()/(X.shape[0]*X.shape[1])\n",
+    "\n",
+    "print(\"Matrix sparsity: {0:.2f}%\".format(sparsity*100))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Finding similar movies using k-Nearest Neighbours"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
    "metadata": {},
    "outputs": [],
    "source": [
     "from sklearn.neighbors import NearestNeighbors\n",
     "\n",
-    "def find_similar_movies(movie_id, X, k, metric=None):\n",
+    "def find_similar_movies(movie_id, X, k, metric='cosine'):\n",
     "    \"\"\"\n",
     "    Finds k-nearest neighbours for a given movie id.\n",
     "    \n",
@@ -578,13 +610,10 @@
     "        movie_id: id of the movie of interest\n",
     "        X: user-item utility matrix\n",
     "        k: number of similar movies to retrieve\n",
-    "        metric: distance metric for kNN calculations, default is set to euclidean\n",
+    "        metric: distance metric for kNN calculations\n",
     "    \n",
     "    Output: returns list of k similar movie ID's\n",
     "    \"\"\"\n",
-    "    if metric == None:\n",
-    "        metric = 'euclidean'\n",
-    "\n",
     "    neighbour_ids = []\n",
     "    \n",
     "    movie_ind = movie_mapper[movie_id]\n",
@@ -604,7 +633,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 97,
+   "execution_count": 14,
    "metadata": {},
    "outputs": [
     {
@@ -643,12 +672,12 @@
    "source": [
     "Pretty cool!\n",
     "\n",
-    "You can also play around with the kNN distance metric and see what results you would get if you use \"manhattan\" instead of \"euclidean\"."
+    "You can also play around with the kNN distance metric and see what results you would get if you use \"manhattan\" or \"euclidean\" instead of \"cosine\"."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 84,
+   "execution_count": 15,
    "metadata": {},
    "outputs": [
     {
@@ -690,7 +719,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 88,
+   "execution_count": 17,
    "metadata": {},
    "outputs": [
     {
@@ -712,6 +741,8 @@
     }
    ],
    "source": [
+    "from sklearn.decomposition import TruncatedSVD\n",
+    "\n",
     "svd = TruncatedSVD(n_components=200, n_iter=10, random_state=42)\n",
     "Z = svd.fit_transform(X)\n",
     "similar_ids = find_similar_movies(movie_id, Z, k=10)\n",
@@ -720,84 +751,6 @@
     "for i in similar_ids:\n",
     "    print(movie_titles[i])"
    ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## Matrix Factorization\n",
-    "\n",
-    "Can we accurately predict a user's movie preferences?"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 121,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "from sklearn.model_selection import train_test_split\n",
-    "from sklearn.decomposition import TruncatedSVD\n",
-    "\n",
-    "ratings_train, ratings_test = train_test_split(ratings, test_size=0.2, random_state=42)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 122,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "X_train, _, _, _, _ = create_X(ratings_train)\n",
-    "X_test, _, _, _, _ = create_X(ratings_test)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 145,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def root_mean_squared_error(X_pred, X_test):\n",
-    "    return np.nanmean((X_pred-X_test)**2)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 146,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "avg = csr_matrix.mean(X_train)\n",
-    "X_pred = np.zeros(X_train.shape)+avg"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 147,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "0.19141917371090814"
-      ]
-     },
-     "execution_count": 147,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "score(X_pred, X_train.toarray())"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {

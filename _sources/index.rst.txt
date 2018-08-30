@@ -23,15 +23,13 @@ Description
 In this tutorial, we will explore the different types of recommendation systems and their implementations. We will also build our own recommendation system using data from the `MovieLens <https://movielens.org//>`_  database.
 
 .. toctree::
+    :maxdepth: 1
+    :caption: Tutorials:
+
+    part-1-building-from-scratch.ipynb
+
+.. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    intro.rst
-
-
-.. toctree::
-    :maxdepth: 1
-    :caption: Tutorials:
-
-    part-1-tutorial.ipynb
-

@@ -4,12 +4,12 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Building a Recommendation System with the MovieLens dataset"
+    "# Building a Recommendation System with the MovieLens dataset"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 47,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -19,7 +19,6 @@
     "import matplotlib.pyplot as plt\n",
     "import seaborn as sns\n",
     "\n",
-    "import os\n",
     "import warnings\n",
     "warnings.simplefilter(action='ignore', category=FutureWarning)"
    ]
